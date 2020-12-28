@@ -1,0 +1,26 @@
+# SquareMind CMake configuration file
+
+set(@PACKAGE_PREFIX@_VERSION @PROJECT_VERSION@)
+
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.9.6")
+  set(CONFIG_FLAG CONFIG)
+endif()
+
+if(NOT TARGET Eigen3::Eigen)
+  find_dependency(Eigen REQUIRED ${CONFIG_FLAG})
+endif()
+
+if(NOT TARGET imgui::imgui)
+  find_dependency(imgui REQUIRED ${CONFIG_FLAG})
+endif()
+
+if(NOT TARGET GLFW::GLFW)
+  find_dependency(GLFW REQUIRED ${CONFIG_FLAG})
+endif()
+
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")

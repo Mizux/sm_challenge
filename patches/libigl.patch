@@ -1,0 +1,46 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 26583b97..a3020c64 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,5 +1,10 @@
+ cmake_minimum_required(VERSION 3.1)
+ 
++# option() honors normal variables.
++if(POLICY CMP0077)
++  cmake_policy(SET CMP0077 NEW)
++endif()
++
+ # Toggles the use of the hunter package manager
+ option(HUNTER_ENABLED "Enable Hunter package manager support" OFF)
+ 
+@@ -18,11 +23,15 @@ if(NOT LIBIGL_PARENT_DIR)
+ else()
+ 	set(LIBIGL_TOPLEVEL_PROJECT OFF)
+ endif()
++message(STATUS "libigl top level project: ${LIBIGL_TOPLEVEL_PROJECT}")
+ 
+ # Build tests and tutorials
+ option(LIBIGL_BUILD_TESTS      "Build libigl unit test"        ${LIBIGL_TOPLEVEL_PROJECT})
+ option(LIBIGL_BUILD_TUTORIALS  "Build libigl tutorial"         ${LIBIGL_TOPLEVEL_PROJECT})
+ option(LIBIGL_EXPORT_TARGETS   "Export libigl CMake targets"   ${LIBIGL_TOPLEVEL_PROJECT})
++message(STATUS "Build libigl unit test: ${LIBIGL_BUILD_TESTS}")
++message(STATUS "Build libigl tutorial: ${LIBIGL_BUILD_TUTORIALS}")
++message(STATUS "Export libigl CMake targets: ${LIBIGL_EXPORT_TARGETS}")
+ 
+ # USE_STATIC_LIBRARY speeds up the generation of multiple binaries,
+ # at the cost of a longer initial compilation time
+diff --git a/cmake/libigl.cmake b/cmake/libigl.cmake
+index d07bbb31..33bad397 100644
+--- a/cmake/libigl.cmake
++++ b/cmake/libigl.cmake
+@@ -1,5 +1,10 @@
+ cmake_minimum_required(VERSION 3.1)
+ 
++# option() honors normal variables.
++if(POLICY CMP0077)
++  cmake_policy(SET CMP0077 NEW)
++endif()
++
+ # https://github.com/libigl/libigl/issues/751
+ # http://lists.llvm.org/pipermail/llvm-commits/Week-of-Mon-20160425/351643.html
+ if(APPLE)
