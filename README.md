@@ -6,6 +6,31 @@
 # Introduction
 Simple [Modern CMake](https://cmake.org/)/C++ App using libigl to draw shortest path.<br>
 
+## Questions
+Challenge can be found in [doc/sm_1.png](doc/sm_1.png) and [doc/sm_2.png](doc/sm_2.png).
+
+1) I've just implemented a Dijkstra algorithm using a priority queue, lack of time for a better
+solution and bench.<br>
+note: Take a look in [Path.cpp](App/src/Path.cpp) for implementation.
+
+2) Using a simple scan (`O(n)` algorithm), I've associated each points to the closest vertex of M.<br>
+Then when initializing the distance from source nodes, use this distance instead of zero.
+
+Potential improvement: I should find the triangle face whose point belongs to,
+then run the shortest path using each triangle's vertices as sources to avoid potential "U turn".
+see: ![limitation](doc/limitation.svg)
+
+3) Use a `const std::function<double(Eigen::VectorXd, Eigen::VectorXd)>&` as parameter of my `shortest_path()`
+method.<br>
+note: Take a look in [Menu.cpp](App/src/Menu.cpp) for usage with a lambda.
+
+4) To have the correct distance from all vertices of M,
+simply compute until the priority queue is empty instead of stoping when the
+target node is "pop()" from the queue.
+
+5) Done by using a `const std::vector<Eigen::VectorXd>&` for passing a list of source points.
+Then in the initialisation of the distances and the queue use all points.
+
 ## Build
 This project should run on Linux, Mac and Windows.
 
