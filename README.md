@@ -55,6 +55,22 @@ Steps would be:
 3) To "avoid" holes you can "disable/mask" triangle with an hole so the
 algorithm won't pass through. i.e. mark these triangles as obstacles.
 
+## Open Issues
+
+* Needed to learn how to use libigl.
+  * Had to patch libigl when used through `FetchContent()` since they didn't
+    enable the CMake policy `CMP0077` -_-.
+  * libigl also download all its dependencies instead of giving the possibility to
+    include them by ourself in a CMake super project.
+    * Concerning libigl's dependencies, there is no doc which dependencies are mandatory nor which
+      options have been used to build them (ToDo: need to investigate this).
+
+* Needed to learn how to use `imgui` to have a minimal GUI when using libigl.
+
+* Needed to learn how to use Eigen types (e.g. extract a `VectorXd` from a `MatrixXd`).
+
+* CI is not working yet, need to fix all Dockerfiles.
+
 ## Build
 This project should run on Linux, Mac and Windows.
 
