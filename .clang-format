@@ -1,0 +1,7 @@
+---
+Language:        Cpp
+BasedOnStyle:  Google
+# Forse pointer to the type for C++
+DerivePointerAlignment: false
+PointerAlignment: Left
+...
