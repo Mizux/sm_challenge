@@ -31,6 +31,30 @@ target node is "pop()" from the queue.
 5) Done by using a `const std::vector<Eigen::VectorXd>&` for passing a list of source points.
 Then in the initialisation of the distances and the queue use all points.
 
+## Bonus
+
+1) By using the edges:
+* We ignore the surface curvature between vertices i.e. using a straigth line
+  from vertex to vertex.
+  see: ![curvature](doc/surface.svg)
+* We limit yourself to cut through the triangle face but instead follow
+  the edges which is not the shortest path.
+  see: ![face](doc/triangles.svg)
+Using higher resolution mesh or subdivision will mitigate these errors.
+
+2) The main idea is to use the triangle faces instead of vertices/edges to compute
+the shortest path, then use a 2D funnel algorithm (implemented by most popular 2D nav-mesh libraries).
+
+Steps would be:
+- Use triangle's centroid to compute the dijkstra shortest path.
+- then unwrap this "triangle path" from the source point to the target point on
+  a 2D plane.
+- then run the funnel algorithm on it to get the point on each "portal" (edge
+  between two consecutive triangles in the shortest path).
+
+3) To "avoid" holes you can "disable/mask" triangle with an hole so the
+algorithm won't pass through. i.e. mark these triangles as obstacles.
+
 ## Build
 This project should run on Linux, Mac and Windows.
 
