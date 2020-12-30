@@ -5,7 +5,7 @@ LABEL maintainer="mizux.dev@gmail.com"
 # Install system build dependencies
 ENV PATH=$PATH:/usr/local/bin
 RUN zypper up -y \
-&& zypper install -y git patch gcc gcc-c++ cmake \
+&& zypper install -y git patch gcc gcc-c++ cmake xorg-x11-devel \
 && zypper clean -a
 RUN cmake -version
 
@@ -17,9 +17,6 @@ WORKDIR /home/project
 COPY . .
 
 FROM devel AS build
-RUN zypper up -y \
-&& zypper install -y xorg-x11-devel
-
 RUN cmake -S. -Bbuild
 RUN cmake --build build --target all -v
 RUN cmake --build build --target install -v
