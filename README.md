@@ -1,7 +1,16 @@
 [![Build Status][docker_status]][docker_link]
+[![Build Status][linux_status]][linux_link]
+[![Build Status][macos_status]][macos_link]
+[![Build Status][windows_status]][windows_link]
 
 [docker_status]: https://github.com/Mizux/sm_challenge/workflows/Docker/badge.svg?branch=main
 [docker_link]: https://github.com/Mizux/sm_challenge/actions?query=workflow%3A"Docker"
+[linux_status]: https://github.com/Mizux/sm_challenge/workflows/Linux/badge.svg?branch=main
+[linux_link]: https://github.com/Mizux/sm_challenge/actions?query=workflow%3ALinux
+[macos_status]: https://github.com/Mizux/sm_challenge/workflows/MacOS/badge.svg?branch=main
+[macos_link]: https://github.com/Mizux/sm_challenge/actions?query=workflow%3AMacOS
+[windows_status]: https://github.com/Mizux/sm_challenge/workflows/Windows/badge.svg?branch=main
+[windows_link]: https://github.com/Mizux/sm_challenge/actions?query=workflow%3AWindows
 
 # Introduction
 Simple [Modern CMake](https://cmake.org/)/C++ App using libigl to draw shortest path.<br>
