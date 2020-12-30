@@ -4,13 +4,19 @@ FROM centos:latest AS env
 LABEL maintainer="mizux.dev@gmail.com"
 # Install system build dependencies
 ENV PATH=$PATH:/usr/local/bin
-RUN yum -y update \
-&& yum -y groupinstall "Development Tools" \
-&& yum -y install epel-release \
-&& yum -y install cmake3 \
-&& ln -s /usr/bin/cmake3 /usr/local/bin/cmake \
-&& yum clean all \
-&& rm -rf /var/cache/yum
+RUN dnf -y update \
+&& dnf -y groupinstall "Development Tools" \
+&& dnf -y install wget \
+libX11-devel mesa-libGL-devel \
+libXrandr-devel libXinerama-devel libXcursor-devel libXi-devel \
+&& dnf clean all \
+&& rm -rf /var/cache/dnf
+
+# Install CMake 3.18.5
+RUN wget "https://cmake.org/files/v3.18/cmake-3.18.5-Linux-x86_64.sh" \
+&& chmod a+x cmake-3.18.5-Linux-x86_64.sh \
+&& ./cmake-3.18.5-Linux-x86_64.sh --prefix=/usr/local/ --skip-license \
+&& rm cmake-3.18.5-Linux-x86_64.sh
 RUN cmake -version
 
 # Add the src to our build env
