@@ -7,6 +7,8 @@ ENV PATH=$PATH:/usr/local/bin
 RUN dnf -y update \
 && dnf -y groupinstall "Development Tools" \
 && dnf -y install git cmake gcc-c++ \
+libX11-devel mesa-libGL-devel \
+libXrandr-devel libXinerama-devel libXcursor-devel libXi-devel \
 && dnf clean all
 RUN cmake -version
 
