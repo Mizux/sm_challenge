@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install Dependencies
-      run: sudo apt install -y xorg-dev
+      run: sudo apt install -y xorg-dev libgl1-mesa-dev
     - uses: actions/checkout@v2
     - name: Check cmake
       run: cmake --version
