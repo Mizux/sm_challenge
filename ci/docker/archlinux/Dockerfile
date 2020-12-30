@@ -4,7 +4,8 @@ FROM archlinux:latest AS env
 LABEL maintainer="mizux.dev@gmail.com"
 # Install system build dependencies
 ENV PATH=$PATH:/usr/local/bin
-RUN pacman -Syu --noconfirm git base-devel cmake
+RUN pacman -Syu --noconfirm git base-devel cmake \
+xorg-server libxrandr libxinerama libxcursor libxi
 RUN cmake -version
 
 # Add the src to our build env
