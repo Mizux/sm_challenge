@@ -17,6 +17,9 @@ WORKDIR /home/project
 COPY . .
 
 FROM devel AS build
+RUN zypper up -y \
+&& zypper install -y xorg-x11-devel
+
 RUN cmake -S. -Bbuild
 RUN cmake --build build --target all -v
 RUN cmake --build build --target install -v
