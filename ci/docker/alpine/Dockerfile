@@ -5,7 +5,7 @@ LABEL maintainer="mizux.dev@gmail.com"
 # Install system build dependencies
 ENV PATH=$PATH:/usr/local/bin
 RUN apk add --no-cache git build-base cmake \
-xorg-server-dev libxrandr-dev libxinerama-dev libxcursor-dev
+xorg-server-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
 RUN cmake -version
 
 # Add the src to our build env
