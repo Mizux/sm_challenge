@@ -7,6 +7,8 @@ jobs:
   cmake:
     runs-on: ubuntu-latest
     steps:
+    - name: Install Dependencies
+      run: sudo apt install -y xorg-dev
     - uses: actions/checkout@v2
     - name: Check cmake
       run: cmake --version
