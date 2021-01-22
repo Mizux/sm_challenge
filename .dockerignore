@@ -5,7 +5,10 @@
 .gitignore
 .github
 
-ci
+ci/cache
+ci/Makefile
+ci/docker
+
 docs
 README.md
 LICENSE
